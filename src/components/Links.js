@@ -21,13 +21,14 @@ function Links() {
 		<div className='bg-gray-900 text-white rounded-xl shadow-lg p-4 flex flex-col items-center gap-4'>
 			<h2 className='text-2xl text-green-500'>References</h2>
 			<div className='flex flex-col gap-4 justify-items-stretch w-full'>
-				{links.map(x => (
+				{links.map((x, i) => (
 					<a
 						href={x.link}
 						className='cursor-pointer py-2 px-4 bg-gray-800 text-white rounded w-full hover:bg-green-600
                          transition-all duration-300 shadow-lg group flex justify-between group'
 						target='_blank'
 						rel='noreferrer'
+						key={i}
 					>
 						<div className='flex justify-center items-center gap-1 font-semibold font-mono'>
 							<BiLink />
