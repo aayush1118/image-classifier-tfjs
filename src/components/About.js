@@ -26,7 +26,7 @@ function About() {
 const ListItem = ({ head, text }) => {
 	return (
 		<div className='flex flex-col gap-2'>
-			<h4 className='text-xl text-green-500 flex items-center gap-1'>
+			<h4 className='text-xl text-green-500 flex items-center gap-1 font-mono'>
 				<BiHash />
 				{head}
 			</h4>
