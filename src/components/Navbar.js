@@ -5,7 +5,7 @@ const Navbar = () => {
 	return (
 		<div
 			className='fixed top-0 w-screen flex justify-center bg-gray-900 text-white
-			py-1 shadow-lg'
+			py-1 shadow-lg z-50'
 		>
 			<Icon icon={<BiSearchAlt size='28' />} text='search' />
 			<Icon icon={<BiGridAlt size='28' />} text='about' />
