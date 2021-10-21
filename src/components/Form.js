@@ -2,9 +2,24 @@ import React from 'react';
 
 function Form() {
 	return (
-		<div className='bg-gray-900 text-white mt-20 w-11/12 rounded-xl shadow-md p-5'>
-			<input type='file' name='image' placeholder='Select Image' />
-			<p>Lorem ipsum dolor sit amet.</p>
+		<div className='bg-gray-900 text-white mt-20 w-11/12 rounded-xl shadow-lg p-4 flex flex-col items-center gap-4'>
+			<h2 className='text-2xl text-green-500'>Select an image!</h2>
+			<input
+				type='file'
+				name='image'
+				placeholder='Select Image'
+				className='text-sm bg-gray-800 p-2 rounded-lg shadow-lg cursor-pointer'
+			/>
+			<div className='flex flex-col gap-4 items-center sticky'>
+				<img
+					src='https://picsum.photos/200/200'
+					alt=''
+					className='rounded-lg shadow-md transform h-64 transition-all duration-300 hover:opacity-70 hover:scale-95'
+				/>
+				<p className='font-semibold text-lg absolute top-1/2 bg-green-600 text-white px-1'>
+					horse 95%
+				</p>
+			</div>
 		</div>
 	);
 }
