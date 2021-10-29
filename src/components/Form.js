@@ -2,29 +2,58 @@ import React, { useState, useEffect } from 'react';
 import { BiShuffle } from 'react-icons/bi';
 import horse from '../img/horse.jpg';
 import * as tf from '@tensorflow/tfjs';
-import modelJSON from '../model/my-model.json';
 
 function Form() {
-	const [model, setModel] = useState();
-	async function loadModel() {
+	const url = {
+		model: 'https://ghcdn.rawgit.org/aayush1118/image-classifier-tfjs/main/src/model/my-model.json',
+	};
+
+	const class_names = [
+		'airplane',
+		'automobile',
+		'bird',
+		'cat',
+		'deer',
+		'dog',
+		'frog',
+		'horse',
+		'ship',
+		'truck',
+	];
+
+	async function loadModel(url) {
 		try {
-			const model = await tf.loadLayersModel(modelJSON);
-			setModel(model);
-			console.log('set loaded Model');
+			const modelJSON = await tf.loadLayersModel(url.model);
+
+			setModel(modelJSON);
+			console.log('Load model success');
+
+			let test = tf.browser.fromPixels(
+				document.getElementById('testImage')
+			);
+			test.reshape([1, 32, 32, 3]);
+			console.log(test);
+
+			const output = model.predict(test);
+			const predictions = Array.from(output.argMax(1).dataSync());
+
+			console.log(class_names[predictions[0]]);
 		} catch (err) {
 			console.log(err);
-			console.log('failed load model');
 		}
 	}
+	//React Hook
+	const [model, setModel] = useState();
 	useEffect(() => {
 		tf.ready().then(() => {
-			loadModel();
+			loadModel(url);
 		});
 	}, []);
 
 	return (
 		<div className='bg-gray-900 text-white rounded-xl shadow-lg p-4 flex flex-col items-center gap-4'>
 			<h2 className='text-2xl text-green-500'>Select an image!</h2>
+			<img src={horse} width='32' height='32' id='testImage' alt='' />
 			<input
 				type='file'
 				name='image'
